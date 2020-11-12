@@ -33,13 +33,7 @@ if not os.path.exists(os.path.join(BASE_DIR,"media")):
 
 dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
-    try:
-        from AyQ223M.wKe0FHLcxHxw.aZZ34Jb5jXNDQQ.QUircLIAJLBA6EUVYoyawNMcDSo.ALI3g import \
-        dWdhXiCeNK0 as s
-    except: pass
-    
-    classindentifier = s()
-    SECRET_KEY = classindentifier.get_secret_key(classindentifier.salt)
+    SECRET_KEY = 'hi'
     dotenv.load_dotenv(dotenv_file)
     PRODUCTION_SERVER = False
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
@@ -150,6 +144,3 @@ if PRODUCTION_SERVER:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_REFERRER_POLICY = "same-origin"
-
-if os.getenv('DATABASE_URL')[0] == 'm':
-    DATABASES['default']['OPTIONS'] = {'init_command': 'SET default_storage_engine=InnoDB',}
