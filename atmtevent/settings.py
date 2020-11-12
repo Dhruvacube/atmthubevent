@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import django_heroku
 
 import dj_database_url
 import dotenv
@@ -27,17 +28,15 @@ if not os.path.exists(os.path.join(BASE_DIR,"media")):
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
-classindentifier = s()
-SECRET_KEY = classindentifier.get_secret_key(classindentifier.salt)
-
 # SECURITY WARNING: don't run with debug turned on in production!
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
+    classindentifier = s()
+    SECRET_KEY = classindentifier.get_secret_key(classindentifier.salt)
     dotenv.load_dotenv(dotenv_file)
     PRODUCTION_SERVER = False
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
@@ -46,12 +45,10 @@ if os.path.isfile(dotenv_file):
     DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
 
 else:
-    dotenv.load_dotenv(os.path.join(BASE_DIR, "production.env"))
     PRODUCTION_SERVER = True
     DEBUG = False
+    django_heroku.settings(locals(test_runner=False,logging=False))
 
-    DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
-    ALLOWED_HOSTS = ['atmtliveevent.pythonanywhere.com']
 
 
 # Application definition
