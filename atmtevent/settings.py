@@ -15,8 +15,6 @@ import django_heroku
 
 import dj_database_url
 import dotenv
-from AyQ223M.wKe0FHLcxHxw.aZZ34Jb5jXNDQQ.QUircLIAJLBA6EUVYoyawNMcDSo.ALI3g import \
-    dWdhXiCeNK0 as s
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -35,6 +33,9 @@ if not os.path.exists(os.path.join(BASE_DIR,"media")):
 
 dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
+    from AyQ223M.wKe0FHLcxHxw.aZZ34Jb5jXNDQQ.QUircLIAJLBA6EUVYoyawNMcDSo.ALI3g import \
+    dWdhXiCeNK0 as s
+    
     classindentifier = s()
     SECRET_KEY = classindentifier.get_secret_key(classindentifier.salt)
     dotenv.load_dotenv(dotenv_file)
