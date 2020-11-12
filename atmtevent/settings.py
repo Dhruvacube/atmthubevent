@@ -33,8 +33,10 @@ if not os.path.exists(os.path.join(BASE_DIR,"media")):
 
 dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
-    from AyQ223M.wKe0FHLcxHxw.aZZ34Jb5jXNDQQ.QUircLIAJLBA6EUVYoyawNMcDSo.ALI3g import \
-    dWdhXiCeNK0 as s
+    try:
+        from AyQ223M.wKe0FHLcxHxw.aZZ34Jb5jXNDQQ.QUircLIAJLBA6EUVYoyawNMcDSo.ALI3g import \
+        dWdhXiCeNK0 as s
+    except: pass
     
     classindentifier = s()
     SECRET_KEY = classindentifier.get_secret_key(classindentifier.salt)
