@@ -144,3 +144,5 @@ if PRODUCTION_SERVER:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_REFERRER_POLICY = "same-origin"
+
+ALLOWED_HOSTS = ['atmthub.herokuapp.com']
