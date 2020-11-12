@@ -44,7 +44,7 @@ if os.path.isfile(dotenv_file):
 else:
     PRODUCTION_SERVER = True
     DEBUG = False
-    django_heroku.settings(locals(test_runner=False,logging=False))
+    django_heroku.settings(locals(),test_runner=False,logging=False)
 
 
 
