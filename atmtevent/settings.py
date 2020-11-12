@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from AyQ223M.wKe0FHLcxHxw.aZZ34Jb5jXNDQQ.QUircLIAJLBA6EUVYoyawNMcDSo.ALI3g import dWdhXiCeNK0 as s
 
 import dj_database_url
 import dotenv
+from AyQ223M.wKe0FHLcxHxw.aZZ34Jb5jXNDQQ.QUircLIAJLBA6EUVYoyawNMcDSo.ALI3g import \
+    dWdhXiCeNK0 as s
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -50,12 +51,14 @@ else:
     DEBUG = False
 
     DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
-    ALLOWED_HOSTS = ['shawdurgapujalive.pythonanywhere.com']
+    ALLOWED_HOSTS = ['atmtliveevent.pythonanywhere.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'live.apps.LiveConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
