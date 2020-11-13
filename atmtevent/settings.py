@@ -138,7 +138,7 @@ if os.path.isfile(dotenv_file):
     DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
 
 else:
-    PRODUCTION_SERVER = False
+    PRODUCTION_SERVER = True
     DEBUG = False
     ALLOWED_HOSTS =['*']
     DATABASES = {'default': dj_database_url.config(default=os.environ['DATABASE_URL'])}
@@ -148,7 +148,6 @@ else:
 if PRODUCTION_SERVER:
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
-    SECURE_SSL_REDIRECT = True
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
