@@ -137,7 +137,7 @@ else:
     DATABASES = {'default': dj_database_url.config(default=os.environ['DATABASE_URL'])}
     SECRET_KEY = os.environ['SECRET_KEY']
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    MIDDLEWARE = MIDDLEWARE[0]+['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
+    MIDDLEWARE = [MIDDLEWARE[0]]+['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
     INSTALLED_APPS = ['whitenoise.runserver_nostatic']+INSTALLED_APPS
 
 
