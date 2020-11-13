@@ -9,7 +9,7 @@ class LiveVideos(models.Model):
     date = models.DateTimeField(_('The Date and Time when the event will go live'),default=now)
     streamingvideoheader = models.CharField(_('Live Streaming Video Header'),max_length=600)
 
-    live = models.BooleanField(_('Live Video'), help_text=_('Check this only if the video is live'), default=True)
+    live = models.BooleanField(_('Live Video'), help_text=_('Check this only if the video is live'), default=False)
 
     streamingvideolink = models.URLField(_('Live Video Link'), null=True, blank=True)
     videoid = models.CharField(_('Facebook/YouTube Video ID'),max_length=500, null=True, blank=True)
@@ -33,18 +33,23 @@ class LiveVideos(models.Model):
             self.live = self.live
 
         #setting up the link embedder
-        if self.streamingvideolink[-1] != '/':
-            self.streamingvideolink = self.streamingvideolink + '/'
-        a = self.streamingvideolink.lstrip('https://www.facebook.com/')
-        lista = a.split('/')
-        if len(lista) == 4:
-            self.videoid = lista[-2]  
-        elif len(lista) == 3:
-            self.videoid = lista[-1]
-        self.usernamefb = lista[0]
-        self.embeedlink = f'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F{self.usernamefb}%2Fvideos%2F{self.videoid}%2F&show_text=false&width=380&height=476&appId'
+        if self.streamingvideolink:
+            if self.streamingvideolink[-1] != '/':
+                self.streamingvideolink = self.streamingvideolink + '/'
+            a = self.streamingvideolink.lstrip('https://www.facebook.com/')
+            lista = a.split('/')
+            if len(lista) == 4:
+                self.videoid = lista[-2]  
+            elif len(lista) == 3:
+                self.videoid = lista[-1]
+            self.usernamefb = lista[0]
+            self.embeedlink = f'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F{self.usernamefb}%2Fvideos%2F{self.videoid}%2F&show_text=false&width=734&height=504&appId'
+        else:
+            self.embeedlink = None
+            self.videoid = None
+            self.usernamefb = None
 
         return super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
     
     class Meta:
-        verbose_name_plural = "Live Videos"
+        verbose_name_plural = "Live Event Videos"
