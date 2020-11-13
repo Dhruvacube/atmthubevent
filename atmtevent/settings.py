@@ -43,7 +43,7 @@ if os.path.isfile(dotenv_file):
 
 else:
     PRODUCTION_SERVER = True
-    DEBUG = False
+    DEBUG = True
     ALLOWED_HOSTS =['atmthub.herokuapp.com']
     django_heroku.settings()
 
