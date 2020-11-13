@@ -143,7 +143,7 @@ else:
     DATABASES = {'default': dj_database_url.config(default=os.environ['DATABASE_URL'])}
     SECRET_KEY = os.environ['SECRET_KEY']
     MIDDLEWARE = [MIDDLEWARE[0]]+['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
-    INSTALLED_APPS=INSTALLED_APPS[0:-2]+['whitenoise.runserver_nostatic']+[INSTALLED_APPS[-1]]
+    INSTALLED_APPS=INSTALLED_APPS[0:-1]+['whitenoise.runserver_nostatic']+[INSTALLED_APPS[-1]]
 
 # # Deployment check
 if PRODUCTION_SERVER:
