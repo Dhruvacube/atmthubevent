@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import django_heroku
 
 import dj_database_url
 import dotenv
@@ -22,30 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #Checking if the media folder exists!
 if not os.path.exists(os.path.join(BASE_DIR,"media")):
     os.makedirs(os.path.join(BASE_DIR,"media"))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECURITY WARNING: don't run with debug turned on in production!
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    SECRET_KEY = 'hi'
-    dotenv.load_dotenv(dotenv_file)
-    PRODUCTION_SERVER = False
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
-    DEBUG = True
-
-    DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
-
-else:
-    PRODUCTION_SERVER = True
-    DEBUG = True
-    ALLOWED_HOSTS =['atmthub.herokuapp.com']
-    django_heroku.settings()
 
 
 
@@ -136,6 +111,35 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
+
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING: don't run with debug turned on in production!
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    SECRET_KEY = 'hi'
+    dotenv.load_dotenv(dotenv_file)
+    PRODUCTION_SERVER = False
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
+    DEBUG = True
+
+    DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
+
+else:
+    PRODUCTION_SERVER = True
+    DEBUG = True
+    ALLOWED_HOSTS =['atmthub.herokuapp.com']
+    DATABASES = {'default': dj_database_url.config(default=os.environ['DATABASE_URL'])}
+    SECRET_KEY = os.environ['SECRET_KEY']
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    MIDDLEWARE = MIDDLEWARE[0]+['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
+
+
 # # Deployment check
 if PRODUCTION_SERVER:
     CSRF_COOKIE_SECURE = True
@@ -145,4 +149,3 @@ if PRODUCTION_SERVER:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_REFERRER_POLICY = "same-origin"
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
