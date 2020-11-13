@@ -21,6 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #Checking if the media folder exists!
 if not os.path.exists(os.path.join(BASE_DIR,"media")):
     os.makedirs(os.path.join(BASE_DIR,"media"))
+if not os.path.exists(os.path.join(BASE_DIR,"staticfiles")):
+    os.makedirs(os.path.join(BASE_DIR,"staticfiles"))
 
 
 
@@ -34,11 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -66,6 +70,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'atmtevent.wsgi.application'
+
+
 
 
 # Password validation
@@ -106,6 +112,7 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
@@ -126,20 +133,16 @@ if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
     PRODUCTION_SERVER = False
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
-    DEBUG = True
+    DEBUG = False
 
     DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
 
 else:
     PRODUCTION_SERVER = True
     DEBUG = False
-    ALLOWED_HOSTS =['atmthub.herokuapp.com']
+    ALLOWED_HOSTS =['*']
     DATABASES = {'default': dj_database_url.config(default=os.environ['DATABASE_URL'])}
     SECRET_KEY = os.environ['SECRET_KEY']
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    MIDDLEWARE = [MIDDLEWARE[0]]+['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
-    INSTALLED_APPS = ['whitenoise.runserver_nostatic']+INSTALLED_APPS
-
 
 # # Deployment check
 if PRODUCTION_SERVER:
