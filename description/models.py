@@ -15,8 +15,8 @@ class Description(models.Model):
     address = models.TextField(_("The Address of ATMT office"))
     
     aboutfooter = models.CharField(_('About the ATMT for the footer'),help_text=_('This should not exceed more than 150 characters'),max_length=150)
-    aboutright = models.TextField(_('About ATMT in the left side of about us section'))
-    aboutleft = models.TextField(_('About ATMT in the right side of about us section'))
+    aboutright = models.TextField(_('About ATMT in the right side of about us section'))
+    aboutleft = models.TextField(_('About ATMT in the left side of about us section'))
 
     def __str__(self):
         return 'About Us (Description)'
