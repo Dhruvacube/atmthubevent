@@ -36,13 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -129,11 +127,11 @@ MEDIA_URL = '/media/'
 
 dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
-    SECRET_KEY = 'hi'
+    SECRET_KEY = '%e-c7#1$9=wz%7v@30c195^b-q8@-(&lab)&gjpa_tf144zu)e'
     dotenv.load_dotenv(dotenv_file)
     PRODUCTION_SERVER = False
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
-    DEBUG = False
+    DEBUG = True
 
     DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
 
@@ -143,6 +141,8 @@ else:
     ALLOWED_HOSTS =['*']
     DATABASES = {'default': dj_database_url.config(default=os.environ['DATABASE_URL'])}
     SECRET_KEY = os.environ['SECRET_KEY']
+    MIDDLEWARE = [MIDDLEWARE[0]]+['whitenoise.middleware.WhiteNoiseMiddleware']+MIDDLEWARE[1:]
+    INSTALLED_APPS=INSTALLED_APPS[0:-2]+['whitenoise.runserver_nostatic']+[INSTALLED_APPS[-1]]
 
 # # Deployment check
 if PRODUCTION_SERVER:
