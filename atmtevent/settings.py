@@ -45,7 +45,7 @@ else:
     PRODUCTION_SERVER = True
     DEBUG = False
     ALLOWED_HOSTS =['atmthub.herokuapp.com']
-    django_heroku.settings(locals())
+    django_heroku.settings()
 
 
 
