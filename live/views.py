@@ -23,7 +23,6 @@ def main(request):
         request,
         'index.html',
         {
-            'page': 'Home',
             'events':events,
             'event':event,
             'desc': desc
