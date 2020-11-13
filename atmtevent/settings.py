@@ -30,6 +30,7 @@ if not os.path.exists(os.path.join(BASE_DIR,"staticfiles")):
 
 INSTALLED_APPS = [
     'live.apps.LiveConfig',
+    'description.apps.DescriptionConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
