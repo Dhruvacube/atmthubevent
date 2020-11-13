@@ -59,4 +59,5 @@ admin.site.unregister(Group)
 admin.site.register(LiveVideos, LiveVideosAdmin)
 
 admin.site.site_header = admin.site.site_title = 'Aarush GOC Pvt Ltd (ATMT HUB)'
-admin.site.index_title = 'Aarush GOC Pvt Ltd (ATMT HUB)'
+admin.site.site_title = 'Aarush GOC Pvt Ltd (ATMT HUB)'
+admin.site.index_title = 'Welcome to ATMT HUB cPanel'
