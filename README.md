@@ -48,7 +48,7 @@
 
 ![MOBILE SCREENSHOT](https://github.com/Dhruvacube/atmthubevent/blob/master/docs_images/mb-4.png?raw=true)
 
-![PC SCREENSHOT](https://github.com/Dhruvacube/atmthubevent/blob/master/docs_images/mb.png?raw=true)
+![MOBILE SCREENSHOT](https://github.com/Dhruvacube/atmthubevent/blob/master/docs_images/mb-5.png?raw=true)
 
 ## With Live Video
 ![MOBILE SCREENSHOT](https://github.com/Dhruvacube/atmthubevent/blob/master/docs_images/mb-6.png?raw=true)
